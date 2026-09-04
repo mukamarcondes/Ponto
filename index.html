@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#152033">
+  <title>Folha de Ponto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="folha-ponto-container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Controle pessoal</p>
+        <h1>Folha de Ponto</h1>
+        <p>Escala fixa de segunda a sexta, das 08:15 às 18:00.</p>
+      </div>
+      <div class="relogio-card">
+        <span id="dataAtual">Hoje</span>
+        <strong id="relogio">--:--</strong>
+      </div>
+    </header>
+
+    <section class="info-funcionario">
+      <div class="info-item"><strong>Entrada padrão:</strong> 08:15</div>
+      <div class="info-item"><strong>Saída padrão:</strong> 18:00</div>
+      <div class="info-item"><strong>Dias:</strong> Segunda a sexta</div>
+      <div class="info-item saldo-info">
+        <div><strong>Saldo do mês:</strong> <span id="saldoMes">0h00</span></div>
+        <div><strong>Saldo acumulado:</strong> <span id="saldoAcumulado">0h00</span></div>
+      </div>
+    </section>
+
+    <section class="painel hoje-card">
+      <div class="painel-topo">
+        <div>
+          <p class="eyebrow">Hoje</p>
+          <h2>Marcar ponto</h2>
+        </div>
+        <span class="status-pill" id="statusHoje">Aguardando registro</span>
+      </div>
+
+      <div class="acoes-ponto">
+        <button class="btn btn-principal" id="marcarEntrada" type="button">Marcar entrada agora</button>
+        <button class="btn btn-secundario" id="marcarSaida" type="button">Marcar saída agora</button>
+      </div>
+
+      <form class="form-ajuste" id="formHoje">
+        <label>Entrada<input id="entradaHoje" type="time"></label>
+        <label>Saída<input id="saidaHoje" type="time"></label>
+        <label class="campo-grande">Observação<input id="obsHoje" type="text" placeholder="Ex.: ajuste manual, consulta, banco..."></label>
+        <button class="btn btn-neutro" type="submit">Salvar ajuste de hoje</button>
+      </form>
+    </section>
+
+    <section class="resumo-grid" id="resumoGrid"></section>
+
+    <section class="painel">
+      <div class="painel-topo">
+        <div>
+          <p class="eyebrow">Conferência</p>
+          <h2>Registros do mês</h2>
+        </div>
+        <div class="barra-ferramentas">
+          <input id="mesSelecionado" type="month">
+          <button class="btn btn-neutro" id="adicionarDia" type="button">Adicionar dia</button>
+          <button class="btn btn-neutro" id="exportarCsv" type="button">Exportar CSV</button>
+          <button class="btn btn-perigo" id="limparMes" type="button">Limpar mês</button>
+        </div>
+      </div>
+
+      <div class="tabela-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Dia</th>
+              <th>Entrada</th>
+              <th>Saída</th>
+              <th>Total</th>
+              <th>Saldo</th>
+              <th>Observação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaRegistros"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-fundo" id="modalRegistro" hidden>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <div class="painel-topo">
+        <div>
+          <p class="eyebrow">Registro</p>
+          <h2 id="modalTitulo">Editar ponto</h2>
+        </div>
+        <button class="btn btn-icone" id="fecharModal" type="button" aria-label="Fechar">x</button>
+      </div>
+      <form class="form-modal" id="formRegistro">
+        <label>Data<input id="dataRegistro" type="date" required></label>
+        <label>Entrada<input id="entradaRegistro" type="time"></label>
+        <label>Saída<input id="saidaRegistro" type="time"></label>
+        <label class="campo-grande">Observação<input id="obsRegistro" type="text"></label>
+        <div class="modal-acoes campo-grande">
+          <button class="btn btn-neutro" id="cancelarModal" type="button">Cancelar</button>
+          <button class="btn btn-principal" type="submit">Salvar registro</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
